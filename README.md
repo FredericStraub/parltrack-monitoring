@@ -1,115 +1,144 @@
-# parltrack-monitoring
-
-Documentation for EU Legislative Acts Analysis Tool
+#EU Legislative Acts Analysis Tool
 
 Overview
 
-This tool facilitates the analysis of EU legislative acts with a focus on assessing relevance to businesses and predefined legal topics. Built with Panel and integrated with OpenAI’s GPT-powered APIs, it supports fetching, processing, and analyzing legislative documents.
-
-Requirements
-
-Libraries Used
-	•	Panel: Used for building the interactive dashboard.
-	•	Requests: Handles HTTP requests to fetch document content.
-	•	Logging: Logs operational information and errors.
-	•	PyPDF2: Extracts text from PDF documents.
-	•	LangChain: Integrates AI-driven language analysis.
-	•	Pydantic: Provides structured validation for models.
-	•	Pandas: Manages tabular data in the laws table.
-	•	BootstrapTemplate (Panel): A responsive template for the dashboard.
+The EU Legislative Acts Analysis Tool is an interactive application designed to analyze EU legislative acts, focusing on their relevance to businesses and predefined legal topics. The tool uses OpenAI’s GPT-powered APIs for language analysis and is built with Panel for a seamless user interface.
 
 Features
 
 1. Law Retrieval
-	•	Load Laws: Retrieves legislative acts of type “COD” from a JSON dataset.
-	•	Display in Table: Laws are displayed with their ID and title using Panel's Tabulator.
+	•	Load and display EU legislative acts of type “COD” (Ordinary legislative procedure).
+	•	Display laws in a table with their ID and title.
 
 2. Law Details
-	•	Interactive Selection: Users select a law to view metadata, procedure details, committee information, council updates, commission summaries, event timelines, and associated documents.
-	•	Document Fetching: Retrieves the latest legislative proposal (PDF or HTML) for analysis.
+	•	View detailed information about a selected law, including:
+	•	Metadata
+	•	Legislative procedure details
+	•	Committees involved
+	•	Council updates
+	•	Commission summaries
+	•	Events timeline
+	•	Documents (including the latest legislative proposal link, if available).
 
 3. Relevance Analysis
-	•	Company Context: Users provide a company description.
-	•	AI Evaluation: Determines the relevance of the law for the described company using a structured prompt and OpenAI’s language model.
+	•	Input: A description of your company.
+	•	AI-Powered Analysis: Determines if the law is relevant to the company and provides a justification.
 
 4. Predefined Analysis
-	•	Legal Topics: Analyzes if the law pertains to predefined areas like data protection, AI, cybersecurity, etc.
-	•	Summary and Breakdown: Provides a summary of the law and justifies relevance for each topic.
+	•	Analyze the law against predefined legal topics, including:
+	•	Data Protection
+	•	Data Regulation
+	•	Digital Products and Services
+	•	Artificial Intelligence
+	•	Cybersecurity
+	•	Output: A summary and detailed topic analysis with justifications.
+
+Installation
+
+Prerequisites
+	•	Python 3.8+
+	•	OpenAI API Key
+
+Steps
+	1.	Clone the repository:
+
+git clone https://github.com/your-username/eu-legislative-acts-analysis.git
+cd eu-legislative-acts-analysis
+
+
+	2.	Install dependencies:
+
+pip install -r requirements.txt
+
+
+	3.	Set your OpenAI API Key:
+	•	Add it to an environment variable:
+
+export OPENAI_API_KEY="your_openai_api_key"
+
+
+	•	Or update the keys.py file:
+
+OPENAI_API_KEY = "your_openai_api_key"
+
+
+	4.	Run the application:
+
+python app.py
+
+
+	5.	Open the application in your browser at the address displayed in the terminal.
+
+Usage
+
+1. Search for Laws
+	•	Click the Get Laws button to load and display laws in a table.
+	•	Select a law to view its details.
+
+2. View Law Details
+	•	Review detailed information, including metadata, procedures, and associated documents.
+
+3. Relevance Analysis
+	•	Provide a description of your company.
+	•	Click Check Relevance to analyze if the law is relevant for your company.
+
+4. Predefined Analysis
+	•	Click Perform Analysis to evaluate the law against predefined legal topics.
+	•	View a summary and detailed analysis of relevance for each topic.
 
 Components
 
 Pydantic Models
-	•	RelevanceResult: Captures the relevance and justification for a company’s context.
+	•	RelevanceResult: Captures the relevance and justification for a company.
 	•	TopicAnalysis: Details topic-specific analysis with relevance and reasoning.
 	•	AnalysisResult: Contains the law’s summary and all topic analyses.
 
-Workflow
-
-1. Search for Laws
-	•	Button: Fetches laws using the Get Laws button.
-	•	Table: Displays up to 100 laws in a table.
-
-2. View Law Details
-	•	Select from Table: Click a law to view details like:
-	•	Metadata
-	•	Legislative Procedure
-	•	Committees
-	•	Council Updates
-	•	Commission Information
-	•	Events
-	•	Documents (latest legislative proposal link, if available)
-
-3. Perform Relevance Analysis
-	•	Input: Provide a company description.
-	•	Process: Analyze the relevance of the selected law to the company.
-	•	Output: Displays relevance and justification.
-
-4. Predefined Analysis
-	•	Process: Checks if the law falls under predefined legal topics.
-	•	Output: Provides a summary and detailed topic analysis with relevance justifications.
-
-Panels and Widgets
-
-Law Search Panel
-	•	Search Button: Fetches laws from a JSON dataset.
+Interactive Widgets
+	•	Search Button: Fetches laws.
 	•	Table: Displays laws with pagination.
-	•	Details Panel: Shows metadata and associated documents.
+	•	Details Pane: Shows metadata, procedures, and documents.
+	•	Text Area: Input for company description.
+	•	Buttons: Trigger relevance and predefined analyses.
+	•	Markdown Panes: Display analysis results.
 
-Analysis Panel
-	•	Company Description Input: Text area to describe the company.
-	•	Relevance Button: Initiates AI-powered relevance analysis.
-	•	Automatic Analysis Button: Starts predefined topic analysis.
+Technologies Used
+	•	Panel: For building the interactive web app.
+	•	OpenAI: Language model for relevance and topic analysis.
+	•	PyPDF2: Text extraction from PDF documents.
+	•	LangChain: Framework for AI-based workflows.
+	•	Pandas: Data manipulation and tabular data display.
+	•	Logging: Operational and error logging.
 
-Key Functions
+Contributing
 
-Data Fetching
-	•	load_json_data: Parses legislative acts from a JSON file.
-	•	fetch_document_text: Fetches and extracts text from legislative proposal documents.
+Contributions Are Welcome!
+	1.	Fork the repository.
+	2.	Create a new branch:
 
-Formatting Helpers
-	•	Functions like format_meta, format_procedure, and format_committees structure data for display in markdown format.
+git checkout -b feature-name
 
-AI Analysis
-	•	analyze_relevance: Determines if a law is relevant to the described company.
-	•	perform_predefined_analysis: Analyzes the law against predefined legal topics.
 
-Running the Application
-	1.	Set API Key: Ensure the OPENAI_API_KEY is set in your environment or keys.py.
-	2.	Serve the Dashboard: Run the script and access the application on the specified server address.
+	3.	Make your changes and commit:
 
-Sample Usage
-	1.	Start the tool.
-	2.	Fetch and view laws.
-	3.	Select a law and review its details.
-	4.	Provide a company description.
-	5.	Perform relevance or topic analysis.
+git commit -m "Description of changes"
 
-Error Handling
-	•	Invalid API Key: Prompts to set the OPENAI_API_KEY.
-	•	Document Errors: Logs issues with fetching or decoding data.
-	•	Analysis Errors: Captures and logs errors during AI analysis.
 
-Extending Functionality
-	•	Add new legal topics for predefined analysis by updating the perform_predefined_analysis prompt.
-	•	Integrate additional document formats for text extraction.
-	•	Connect to dynamic data sources like APIs for legislative updates.
+	4.	Push your branch:
+
+git push origin feature-name
+
+
+	5.	Open a Pull Request.
+
+License
+
+This project is licensed under the MIT License.
+
+Future Enhancements
+	•	Integration with dynamic data sources (e.g., APIs for real-time legislative updates).
+	•	Support for additional document formats.
+	•	Enhanced topic customization for analysis.
+
+Contact
+
+For questions or feedback, please contact [your-email@example.com].
