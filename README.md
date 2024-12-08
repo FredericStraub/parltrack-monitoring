@@ -2,7 +2,9 @@
 
 Overview
 
-The EU Legislative Acts Analysis Tool is an interactive application designed to analyze EU legislative acts, focusing on their relevance to businesses and predefined legal topics. The tool uses OpenAI’s GPT-powered APIs for language analysis and is built with Panel for a seamless user interface.
+Disclaimer: super crapy and just used for experimentation. shoutout parltrack https://parltrack.org/
+
+The EU Legislative Acts Analysis Tool is an interactive application designed to analyze EU legislative acts, focusing on their relevance to businesses and predefined legal topics. The tool uses OpenAI’s GPT-powered APIs for language analysis and is built with Panel for a seamless user interface. 
 
 Features
 
@@ -141,4 +143,4 @@ Future Enhancements
 
 Contact
 
-For questions or feedback, please contact [your-email@example.com].
+For questions or feedback, please contact me.
